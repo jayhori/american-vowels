@@ -1,0 +1,14 @@
+@import 'meyer-reset';
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+textarea:focus, input:focus, button:focus{
+    outline: none;
+}
+
+input {
+    border-radius: 0;
+}

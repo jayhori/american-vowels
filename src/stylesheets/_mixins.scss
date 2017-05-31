@@ -1,0 +1,13 @@
+@mixin link-underline {
+	&:link {
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+		border-bottom-color: $light-gray;
+		padding-bottom: 1px;
+		background-color: transparent;
+	}
+	&:hover {
+		border-bottom-width: 2px;
+		padding-bottom: 0px;
+	}
+}

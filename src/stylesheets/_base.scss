@@ -1,0 +1,128 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    font-family: $text-font;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+* {box-sizing: border-box;}
+html {background: $background-color;}
+.app {width: 600px;}
+.wrapper {margin: 0 auto;}
+
+p {
+    margin-bottom: 16px;
+    &:last-child {margin-bottom: 32px;}
+}
+
+h2 {
+    font-family: $display-font;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 24px;
+    margin-bottom: 16px;
+}
+
+a {@include link-underline;}
+
+nav {
+    margin-top: 64px;
+    height: 64px;
+    a {
+        font-family: $display-font;
+        font-size: 22px;
+        line-height: 64px;
+        color: $light-gray;
+        font-weight: 600;
+        &:link, &:hover {
+            border: 0;
+            padding: 0;
+        }
+        margin-right: 16px;
+        &:last-of-type {margin-right: 0;}
+        &.active {color: $black;}
+    }
+}
+
+.loading {color: $black;}
+
+.pronunciation-container {
+    padding: 16px;
+    background: $almost-transparent-gray;
+    li {position: relative;}
+}
+
+.pronunciation {
+    font-size: 24px;
+    margin-bottom: 24px;
+}
+
+.key {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 16px;
+}
+
+.definition {margin-left: 32px;}
+
+.search {
+    position: relative;
+    margin-bottom: 64px;
+    button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 64px;
+        width: 64px;
+        font-size: 24px;
+        background: transparent;
+        border: 1px solid $light-gray;
+        border-left: 0;
+        color: $light-gray;
+    }
+    input {
+        display: inline-block;
+        height: 64px;
+        width: calc(100% - 64px);
+        padding: 0 16px;
+        background: transparent;
+        line-height: 64px;
+        font-size: 24px;
+        font-family: $text-font;
+        cursor: pointer;
+        text-decoration: none;
+        text-align: left;
+        color: $black;
+        border: 1px solid $light-gray;
+        &::placeholder {
+            font-size: 24px;
+            color:$gray;
+            font-weight: 200;
+        }
+    }
+}
+.about {
+    border-top: 2px solid $almost-transparent-gray;
+    padding-top: 32px;
+}
+
+@media (max-width: 600px) {
+  .app {
+      width: 100%;
+      padding: 0 8px;
+    }
+  .wrapper {margin: 0}
+}
