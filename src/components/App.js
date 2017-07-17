@@ -19,6 +19,7 @@ export class App extends Component {
     render() {
         return (
             <div className='wrapper app'>
+                <h1>The Vowels-In-A-Word Dictionary</h1>
                 <Menu/>
                 {(this.props.location.pathname === '/') ?
                 <LookUpWord/> : 

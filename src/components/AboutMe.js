@@ -1,6 +1,5 @@
 export const AboutMe = ({name, profession, skills, position}) => (
     <div>
-        <h2>The Developer</h2>
         <p>My name is {name}. I am a {
             profession[Math.floor(Math.random() * (Math.floor(profession.length - 1) - Math.ceil(0) + 1)) + Math.ceil(0)]
             } whose skills include {

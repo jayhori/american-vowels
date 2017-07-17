@@ -73,17 +73,20 @@ export class LookUpWord extends Component {
                     errorMessage ? <span>{errorMessage}</span> :
                     submitted ?
                     <div className='pronunciation-container'>
-                        <p>The International Phonetic Alphabet of {word.word}:</p>
-                        <p className='pronunciation'>{word.pronunciation.all}</p>
-                        { symbols ?
-                            symbols.map(
-                                (symbol, index) => (
-                                        <Audio
-                                            symbol={symbol}
-                                        />)
-                            ) : null
-                        }
-                        <p>Definitions of {word.word}:</p>
+                        <h3>The International Phonetic Alphabet of <span className='uppercase'> {word.word}</span>:</h3>
+                        <span className='pronunciation'>{word.pronunciation.all}</span>
+                        <h3>Vowels of <span className='uppercase'>{word.word}</span>:</h3>
+                        <div className='audio-container'>
+                            { symbols ?
+                                symbols.map(
+                                    (symbol, index) => (
+                                            <Audio
+                                                symbol={symbol}
+                                            />)
+                                ) : null
+                            }
+                        </div>
+                        <h3>Definitions of <span className='uppercase'>{word.word}:</span></h3>
                         <ul>{word.results.map(
                             (data, key) =>
                             (key < 3) ?

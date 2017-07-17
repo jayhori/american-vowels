@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import ReactAudioPlayer from 'react-audio-player'
+import MdVolumeUp from 'react-icons/lib/md/volume-up'
 
 export class Audio extends Component {
 
@@ -14,9 +15,9 @@ export class Audio extends Component {
         const { playing } = this.state
         return (
             <div>
-                <span>{this.props.symbol.name}</span><button onClick={() => this.setState({playing: true})} >Play</button>
+                <span className='symbol'>{this.props.symbol.name}</span><span className='audio-icon'><MdVolumeUp onClick={() => this.setState({playing: true})}/></span>
                 {
-                    playing ? <span>Audio is playing<ReactAudioPlayer
+                    playing ? <span>Playing<ReactAudioPlayer
                     src={this.props.symbol.url} 
                     onEnded={() => {this.setState({playing: false})}}
                     autoPlay
@@ -25,5 +26,4 @@ export class Audio extends Component {
             </div>
         )
     }
-
 }
