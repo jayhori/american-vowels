@@ -1,6 +1,8 @@
 import { Component } from 'react'
 import GoSearch from 'react-icons/lib/go/search'
 import { credentials } from '../credentials'
+import { Audio } from './Audio'
+import { vowels } from '../vowels'
 
 export class LookUpWord extends Component {
     
@@ -13,16 +15,17 @@ export class LookUpWord extends Component {
         this.submit = this.submit.bind(this)
     }
 
-    submit(e) {
+    async submit(e) {
         this.setState({loading: true})
         this.setState({submitted: true})
         e.preventDefault()
-        this.fetchWord(this.refs.word.value)
+        await this.fetchWord(this.refs.word.value)
             .then(word => {this.setState({
                     word,
                     loading: false
                 })
             })
+        this.findVowels(this.state.word.pronunciation.all)
     }
 
     async fetchWord(word) {
@@ -43,9 +46,21 @@ export class LookUpWord extends Component {
             .then(json => json)
         return data
     }
+    findVowels(pronunciation) {
+        let symbols = []
+        for (let i=0; i < pronunciation.length; i++) {
+            if (vowels[pronunciation.charAt(i)]) {
+                let pronunciationObject = {}
+                pronunciationObject.name = pronunciation.charAt(i)
+                pronunciationObject.url = vowels[pronunciation.charAt(i)]
+                symbols.push(pronunciationObject)
+            }
+        }
+        this.setState({symbols: symbols})
+    }
 
     render() {
-        const { word, loading, submitted, errorMessage } = this.state
+        const { word, loading, submitted, errorMessage, symbols } = this.state
         return(
             <div>
                 <form onSubmit={this.submit}>
@@ -54,13 +69,20 @@ export class LookUpWord extends Component {
                         <button><GoSearch/></button>
                     </div >
                 </form>
-                <div>
                 { loading ? <div><span className='loading'>Loading...</span></div> :
                     errorMessage ? <span>{errorMessage}</span> :
                     submitted ?
                     <div className='pronunciation-container'>
                         <p>The International Phonetic Alphabet of {word.word}:</p>
                         <p className='pronunciation'>{word.pronunciation.all}</p>
+                        { symbols ?
+                            symbols.map(
+                                (symbol, index) => (
+                                        <Audio
+                                            symbol={symbol}
+                                        />)
+                            ) : null
+                        }
                         <p>Definitions of {word.word}:</p>
                         <ul>{word.results.map(
                             (data, key) =>
@@ -73,7 +95,6 @@ export class LookUpWord extends Component {
                         )}</ul>
                     </div> : null
                 }
-                </div>
             </div>
         )
     }
