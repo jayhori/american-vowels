@@ -15,10 +15,10 @@ export class Audio extends Component {
         const { playing } = this.state
         return (
             <div>
-                <span className='symbol'>{this.props.symbol.name}</span><span className='audio-icon'><MdVolumeUp onClick={() => this.setState({playing: true})}/></span>
+                <span className='vowel-in-word'>{this.props.vowelInWord.name}</span><span className='audio-icon'><MdVolumeUp onClick={() => this.setState({playing: true})}/></span>
                 {
                     playing ? <span>Playing<ReactAudioPlayer
-                    src={this.props.symbol.url} 
+                    src={this.props.vowelInWord.url}
                     onEnded={() => {this.setState({playing: false})}}
                     autoPlay
                         /></span> : null
