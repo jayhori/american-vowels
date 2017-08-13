@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import filter from 'lodash'
 import GoSearch from 'react-icons/lib/go/search'
 import { credentials } from '../credentials'
 import { Audio } from './Audio'
@@ -47,20 +48,27 @@ export class LookUpWord extends Component {
         return data
     }
     findVowels(pronunciation) {
-        let symbols = []
-        for (let i=0; i < pronunciation.length; i++) {
-            if (vowels[pronunciation.charAt(i)]) {
-                let pronunciationObject = {}
-                pronunciationObject.name = pronunciation.charAt(i)
-                pronunciationObject.url = vowels[pronunciation.charAt(i)]
-                symbols.push(pronunciationObject)
+        let vowelsInWord = []
+        const checkEachCharacter = n => {
+            if (pronunciation.charAt(n)) {
+                const filteredObjects = _.filter(vowels, vowel => {
+                    return vowel.name === pronunciation.charAt(n)
+                })
+                if (filteredObjects.length > 1) {
+                    console.log('Warning: there are duplicates in data.')
+                }
+                if (filteredObjects.length > 0) {
+                    vowelsInWord.push(filteredObjects[0])
+                }
+                checkEachCharacter(n+1)
             }
         }
-        this.setState({symbols: symbols})
+        checkEachCharacter(0)
+        this.setState({vowelsInWord: vowelsInWord})
     }
 
     render() {
-        const { word, loading, submitted, errorMessage, symbols } = this.state
+        const { word, loading, submitted, errorMessage, vowelsInWord } = this.state
         return(
             <div>
                 <form onSubmit={this.submit}>
@@ -77,11 +85,11 @@ export class LookUpWord extends Component {
                         <span className='pronunciation'>{word.pronunciation.all}</span>
                         <h3>Vowels of <span className='uppercase'>{word.word}</span>:</h3>
                         <div className='audio-container'>
-                            { symbols ?
-                                symbols.map(
-                                    (symbol, index) => (
+                            { vowelsInWord ?
+                                vowelsInWord.map(
+                                    (vowelInWord, index) => (
                                             <Audio
-                                                symbol={symbol}
+                                                vowelInWord={vowelInWord}
                                             />)
                                 ) : null
                             }
@@ -91,7 +99,7 @@ export class LookUpWord extends Component {
                             (data, key) =>
                             (key < 3) ?
                             <li key={key}>
-                                <span className='key'>{key + 1}.</span>
+                                <span className='key'>{key + 1}</span>
                                 <div className='definition'>{data.definition}</div>
                             </li> :
                             null
