@@ -26,7 +26,7 @@ export class LookUpWord extends Component {
                     loading: false
                 })
             })
-        this.findVowels(this.state.word.pronunciation.all)
+        this.setState({vowelsInWord: this.findVowels(this.state.word.pronunciation.all)})
     }
 
     async fetchWord(word) {
@@ -64,7 +64,7 @@ export class LookUpWord extends Component {
             }
         }
         checkEachCharacter(0)
-        this.setState({vowelsInWord: vowelsInWord})
+        return vowelsInWord
     }
 
     render() {
