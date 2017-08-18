@@ -19,6 +19,7 @@ export class LookUpWord extends Component {
     async submit(e) {
         this.setState({loading: true})
         this.setState({submitted: true})
+        this.props.hideAbout()
         e.preventDefault()
         await this.fetchWord(this.refs.word.value)
             .then(word => {this.setState({
@@ -45,6 +46,7 @@ export class LookUpWord extends Component {
             )
             .then(response => response.json())
             .then(json => json)
+            console.log(data)
         return data
     }
     findVowels(pronunciation) {
@@ -80,31 +82,39 @@ export class LookUpWord extends Component {
                 { loading ? <div><span className='loading'>Loading...</span></div> :
                     errorMessage ? <span>{errorMessage}</span> :
                     submitted ?
-                    <div className='pronunciation-container'>
-                        <h3>The International Phonetic Alphabet of <span className='uppercase'> {word.word}</span>:</h3>
-                        <span className='pronunciation'>{word.pronunciation.all}</span>
-                        <h3>Vowels of <span className='uppercase'>{word.word}</span>:</h3>
-                        <div className='audio-container'>
-                            { vowelsInWord ?
-                                vowelsInWord.map(
-                                    (vowelInWord, index) => (
-                                            <Audio
-                                                vowelInWord={vowelInWord}
-                                            />)
-                                ) : null
-                            }
+                    <div>
+                        <div className='pronunciation-container'>
+                            <h3>The International Phonetic Alphabet of <span className='uppercase'> {word.word}</span>:</h3>
+                            <span className='pronunciation'>{word.pronunciation.all}</span>
+                            <h3>Vowels of <span className='uppercase'>{word.word}</span>:</h3>
+                            <div className='audio-container'>
+                                { vowelsInWord ?
+                                    vowelsInWord.map(
+                                        (vowelInWord, index) => (
+                                                <Audio
+                                                    vowelInWord={vowelInWord}
+                                                />)
+                                    ) : null
+                                }
+                            </div>
+                            <h3>Definitions of <span className='uppercase'>{word.word}:</span></h3>
+                            <ul>{word.results.map(
+                                (data, key) =>
+                                (key < 3) ?
+                                <li key={key}>
+                                    <span className='key'>{key + 1}</span>
+                                    <div className='definition'>{data.definition}</div>
+                                </li> :
+                                null
+                            )}</ul>
                         </div>
-                        <h3>Definitions of <span className='uppercase'>{word.word}:</span></h3>
-                        <ul>{word.results.map(
-                            (data, key) =>
-                            (key < 3) ?
-                            <li key={key}>
-                                <span className='key'>{key + 1}</span>
-                                <div className='definition'>{data.definition}</div>
-                            </li> :
+                        {(!this.props.showAboutStatus) ?
+                            <a onClick={() => this.props.showAbout()}>About the App</a>
+                            :
                             null
-                        )}</ul>
-                    </div> : null
+                        }
+                    </div>
+                    : null
                 }
             </div>
         )

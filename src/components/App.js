@@ -1,32 +1,42 @@
 import { Component } from 'react'
 import { About } from './About'
 import { LookUpWord } from './LookUpWord'
-import { NotFound } from './NotFound'
-import { Menu } from './Menu'
 
 export class App extends Component {
     constructor(props) {
         super(props)
+        this.showAbout = this.showAbout.bind(this)
+        this.hideAbout = this.hideAbout.bind(this)
         this.state = {
             about: {
-                name:'Jay Hori',
+                first_name:'Jay',
+                last_name: 'Hori',
                 profession: ['computer programmer', 'software engineer', 'frontend engineer', 'JavaScript programmer'],
-                skills: ['JavaScript', 'React', 'TypeScript', 'Angular'],
-                position: 1
-            }
+                skills: ['JavaScript', 'React', 'TypeScript', 'Angular']
+            },
+            showAbout: true
         }
     }
+    
+    showAbout() {
+        this.setState({showAbout: true})
+    }
+    hideAbout() {
+        this.setState({showAbout: false})
+    }
+
     render() {
         return (
             <div className='wrapper app'>
                 <h1>The Vowels-In-A-Word Dictionary</h1>
-                <Menu/>
-                {(this.props.location.pathname === '/') ?
-                <LookUpWord/> : 
-                (this.props.location.pathname === '/about') ?
-                <About about={this.state.about} /> :
-                <NotFound/>
-                }
+                    <div>
+                        <LookUpWord
+                            showAboutStatus={this.state.showAbout}
+                            showAbout={() => this.showAbout()}
+                            hideAbout={() => this.hideAbout()}
+                        />
+                        {this.state.showAbout ? <About about={this.state.about}/> : null}
+                    </div>
             </div>
         )
     }
