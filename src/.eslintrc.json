@@ -1,0 +1,21 @@
+{
+    "extends": [
+      "airbnb"
+    ],
+    "rules": {
+      "semi": [2, "never"],
+      "no-nested-ternary": [0],
+      "react/react-in-jsx-scope": [0],
+      "react/jsx-filename-extension": [0],
+      "react/prop-types": [0]
+    },
+    "plugins": [
+      "react",
+      "jsx-a11y",
+      "import"
+    ],
+    "env": {
+      "browser": true,
+      "es6": true
+    }
+}

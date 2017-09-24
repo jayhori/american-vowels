@@ -8,6 +8,10 @@
   },
   "author": "Jay Hori",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jayhori/pronunciation-dictionary"
+  },
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
     "babel-cli": "^6.23.0",
@@ -19,6 +23,11 @@
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-0": "^6.22.0",
     "css-loader": "^0.27.3",
+    "eslint": "^4.7.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.3.0",
     "json-loader": "^0.5.4",
     "node-sass": "^4.5.0",
     "sass-loader": "^6.0.3",
@@ -28,7 +37,6 @@
     "write-file-webpack-plugin": "^4.0.0"
   },
   "dependencies": {
-    "lodash": "^4.17.4",
     "react": "^15.5.0",
     "react-audio-player": "^0.6.0",
     "react-dom": "^15.4.2",
