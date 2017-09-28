@@ -1,36 +1,44 @@
 html, body, div {
-    font-family: $text-font;
-    font-size: 16px;
-    line-height: 24px;
+  font-family: $text-font;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 * {box-sizing: border-box;}
 html {background: $background-color;}
-.app {width: 600px;}
-.wrapper {margin: 0 auto;}
+.app {
+  width: $app-width;
+  margin: 24px auto 0 auto
+}
 .uppercase {text-transform: uppercase;}
 
-p {margin-bottom: 16px;}
+p {
+  font-family: $text-font;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 8px;
+}
 
 h1 {
-    font-family: $display-font;
-    font-weight: 600;
-    font-size: 22px;
-    line-height: 64px;
+  font-family: $display-font;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+  margin-bottom: 8px;
 }
 
 h2 {
-    font-family: $display-font;
-    font-weight: 600;
-    font-size: 22px;
-    line-height: 24px;
-    margin-bottom: 16px;
+  font-family: $display-font;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+  margin-bottom: 8px;
 }
 
 h3 {
-    font-family: $display-font;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 20px;
-    margin-bottom: 8px;
+  font-family: $display-font;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 26px;
+  margin-bottom: 8px;
 }

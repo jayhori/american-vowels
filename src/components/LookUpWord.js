@@ -27,11 +27,12 @@ export default class extends Component {
           word,
           loading: false,
         }),
-      )
+    )
     this.setState(
-      { vowelsInWord: this.findVowels(
-        this.state.word.pronunciation.all,
-        generalAmericanVowels),
+      {
+        vowelsInWord: this.findVowels(
+          this.state.word.pronunciation.all,
+          generalAmericanVowels),
       },
     )
   }
@@ -82,7 +83,7 @@ export default class extends Component {
               id="word"
               type="text"
               ref={(input) => { this.textInput = input }}
-              placeholder="Search"
+              placeholder="search"
               required
             />
             <button><GoSearch /></button>
@@ -92,13 +93,18 @@ export default class extends Component {
           errorMessage ? <span>{errorMessage}</span> :
             submitted ?
               <div>
+                <div className="looked-up-title-container">
+                  <div className="looked-up-title">
+                    {word.word}
+                  </div>
+                </div>
                 <div className="pronunciation-container">
                   <h3>The International Phonetic Alphabet of
                     <span className="uppercase"> {word.word}
                     </span>&#58;
                   </h3>
                   <span className="pronunciation">{word.pronunciation.all}</span>
-                  <h3>Vowels of <span className="uppercase">{word.word}</span>&#58;</h3>
+                  <h3>Indivisual Vowels of <span className="uppercase">{word.word}</span>&#58;</h3>
                   <div className="audio-container">
                     {vowelsInWord ?
                       vowelsInWord.map(
@@ -121,17 +127,6 @@ export default class extends Component {
                   )}
                   </ul>
                 </div>
-                {(!this.props.showAboutStatus) ?
-                  <a
-                    onClick={() => this.props.showAbout()}
-                    role="button"
-                    tabIndex="0"
-                  >
-                    About the App
-                  </a>
-                  :
-                  null
-                }
               </div>
               : null
         }
