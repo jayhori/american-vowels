@@ -13,30 +13,60 @@ export default class extends Component {
         lastName: 'Hori',
         profession: 'computer programmer',
         skills: ['JavaScript', 'React', 'TypeScript', 'Angular'],
+        city: 'Tokyo',
       },
-      showAbout: true,
+      aboutIsVisible: true,
     }
   }
 
   showAbout() {
-    this.setState({ showAbout: true })
+    this.setState({ aboutIsVisible: true })
   }
   hideAbout() {
-    this.setState({ showAbout: false })
+    this.setState({ aboutIsVisible: false })
   }
 
   render() {
     return (
-      <div className="wrapper app">
-        <h1>The Vowels-In-A-Word Dictionary</h1>
+      <div className="app">
+        <header className="header">
+          <h1>Vowels in a Word</h1>
+          <div className="summary">
+            Learning English vowels is not rocket science. Look up
+            your favorite word and study accurate sounds of its vowels one by one.
+          </div>
+        </header>
         <div>
           <LookUpWord
             showAboutStatus={this.state.showAbout}
             showAbout={() => this.showAbout()}
             hideAbout={() => this.hideAbout()}
           />
-          {this.state.showAbout ? <About about={this.state.about} /> : null}
         </div>
+        {
+          this.state.aboutIsVisible ?
+            <div>
+              <a
+                onClick={() => this.hideAbout()}
+                role="button"
+                tabIndex="0"
+              >
+                Hide about
+              </a>
+              {this.state.aboutIsVisible ?
+                <About about={this.state.about} />
+                : null}
+            </div> :
+            <div>
+              <a
+                onClick={() => this.showAbout()}
+                role="button"
+                tabIndex="0"
+              >
+                Show about
+              </a>
+            </div>
+        }
       </div>
     )
   }

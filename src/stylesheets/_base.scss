@@ -2,87 +2,111 @@ a {@include link-underline;}
 
 .loading {color: $black;}
 
+.header {
+  margin-bottom: 48px;
+}
+
+.summary {
+  font-family: $display-font;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  max-width: 500px;
+}
+
+.looked-up-title-container {
+  background: $almost-transparent-gray;
+}
+
+.looked-up-title {
+  font-family: $display-font;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 60px;
+  margin: 0 16px;
+  color: $black;
+  background: transparent;
+  border-bottom: solid $light-gray 2px;
+}
+
 .pronunciation-container {
-    padding: 16px;
-    background: $almost-transparent-gray;
-    li {position: relative;}
-    p {margin-bottom: 0;}
+  padding: 16px;
+  background: $almost-transparent-gray;
+  li {position: relative;}
+  p {margin-bottom: 0;}
 }
 
 .pronunciation {
-    display: inline-block;
-    font-size: 24px;
-    line-height: 28px;
-    margin-bottom: 16px;
+  display: inline-block;
+  font-size: 24px;
+  line-height: 28px;
+  margin-bottom: 24px;
 }
 
 .audio-container {
-    margin-bottom: 16px;
-    .vowel-in-word {
-        display: inline-block;
-        width: 16px;
-    }
-    .audio-icon {
-        display: inline-block;
-        width: 24px;
-    }
+  margin-bottom: 24px;
+  .vowel-in-word {
+    display: inline-block;
+    width: 16px;
+  }
+  .audio-icon {
+    display: inline-block;
+    width: 24px;
+  }
 }
 
 .key {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: inline-block;
-    width: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 16px;
 }
 
 .definition {margin-left: 32px;}
 
 .search {
-    position: relative;
-    margin-bottom: 64px;
+  position: relative;
+  margin-bottom: 48px;
     button {
-        position: absolute;
-        right: 0;
-        top: 0;
-        height: 64px;
-        width: 64px;
-        font-size: 24px;
-        background: transparent;
-        border: 1px solid $light-gray;
-        border-left: 0;
-        color: $light-gray;
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 40px;
+      width: 80px;
+      font-size: 16px;
+      background: $black;
+      border: 1px solid $black;
+      border-left: 0;
+      color: $white;
     }
     input {
-        display: inline-block;
-        height: 64px;
-        width: calc(100% - 64px);
-        padding: 0 16px;
-        background: transparent;
-        line-height: 64px;
-        font-size: 24px;
-        font-family: $text-font;
-        cursor: pointer;
-        text-decoration: none;
-        text-align: left;
-        color: $black;
-        border: 1px solid $light-gray;
-        &::placeholder {
-            font-size: 24px;
-            color:$gray;
-            font-weight: 200;
-        }
+      display: inline-block;
+      height: 40px;
+      width: calc(100% - 80px);
+      padding: 0 8px;
+      background: transparent;
+      line-height: 40px;
+      font-size: 16px;
+      font-family: $text-font;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: left;
+      color: $black;
+      border: 1px solid $black;
+      &::placeholder {
+        font-size: 16px;
+        color:$gray;
+      }
     }
 }
 .about {
-    border-top: 2px solid $almost-transparent-gray;
-    padding-top: 32px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: $app-width) {
   .app {
-      width: 100%;
-      padding: 0 8px;
-    }
+    width: 100%;
+    padding: 0 8px;
+  }
   .wrapper {margin: 0}
 }

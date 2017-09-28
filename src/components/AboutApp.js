@@ -2,7 +2,7 @@ export const AboutApp = () => (
   <div>
     <p>
       This little web application lets you look up an English word,
-      and you can always expect to see nothing else but
+      and you can always expect to see nothing else but&nbsp;
       <a
         target="_blank"
         rel="noopener noreferrer"
