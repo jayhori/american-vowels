@@ -8,7 +8,6 @@ export default class extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      loading: false,
       submitted: false,
     }
     this.submit = this.submit.bind(this)
@@ -17,24 +16,23 @@ export default class extends Component {
   }
 
   async submit(e) {
-    this.setState({ loading: true })
+    this.props.setLoadingStateToTruthy()
     this.setState({ submitted: true })
     this.props.hideAbout()
     e.preventDefault()
     await this.fetchWord(this.textInput.value)
-      .then(word =>
-        this.setState({
-          word,
-          loading: false,
-        }),
-    )
-    this.setState(
-      {
-        vowelsInWord: this.findVowels(
-          this.state.word.pronunciation.all,
-          generalAmericanVowels),
-      },
-    )
+      .then(
+        (word) => {
+          this.setState({ word })
+          this.props.setLoadingStateToFalsy()
+        },
+      )
+    this.setState({
+      vowelsInWord: this.findVowels(
+        this.state.word.pronunciation.all,
+        generalAmericanVowels,
+      ),
+    })
   }
 
   async fetchWord(word) {
@@ -44,12 +42,10 @@ export default class extends Component {
     const request = new Request(`https://wordsapiv1.p.mashape.com/words/${word.toLowerCase()}`, { headers })
     const data = await fetch(request)
       .then(response =>
-        (!response.ok ?
-          this.setState({
-            loading: false,
-            errorMessage: response.statusText,
-          }) :
-          response),
+        (!response.ok ? (
+          this.setState({ errorMessage: response.statusText }),
+          this.props.setLoadingStateToFalsy()
+        ) : response),
       )
       .then(response => response.json())
       .then(json => json)
@@ -74,7 +70,8 @@ export default class extends Component {
   }
 
   render() {
-    const { word, loading, submitted, errorMessage, vowelsInWord } = this.state
+    const { loading } = this.props
+    const { word, submitted, errorMessage, vowelsInWord } = this.state
     return (
       <div>
         <form onSubmit={this.submit}>
@@ -92,11 +89,9 @@ export default class extends Component {
         {loading ? <div><span className="loading">Loading...</span></div> :
           errorMessage ? <span>{errorMessage}</span> :
             submitted ?
-              <div>
-                <div className="looked-up-title-container">
-                  <div className="looked-up-title">
-                    {word.word}
-                  </div>
+              <div className="set looked-up-word-card">
+                <div className="looked-up-title">
+                  {word.word}
                 </div>
                 <div className="pronunciation-container">
                   <h3>The International Phonetic Alphabet of

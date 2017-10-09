@@ -9,5 +9,28 @@
 	&:hover {
 		border-bottom-width: 2px;
 		padding-bottom: 0px;
-	}
+  }
+}
+
+@mixin button {
+  font-family: $display-font;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 14px;
+  width: 100px;
+  background: transparent;
+  cursor: pointer;
+  transition-duration: 0.5s;
+  padding: 4px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  text-align: center;
+  color: $black;
+  border: 2px solid $black;
+  &:hover {
+    padding: 4px;
+    transition-duration: 0.5s;
+    background-color: $black;
+  	color: $white;
+  }
 }

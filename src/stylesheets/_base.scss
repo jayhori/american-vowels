@@ -1,9 +1,10 @@
 a {@include link-underline;}
+.button {@include button;}
 
 .loading {color: $black;}
 
 .header {
-  margin-bottom: 48px;
+  margin-bottom: 16px;
 }
 
 .summary {
@@ -14,7 +15,8 @@ a {@include link-underline;}
   max-width: 500px;
 }
 
-.looked-up-title-container {
+.looked-up-word-card {
+  padding: 8px 0;
   background: $almost-transparent-gray;
 }
 
@@ -31,7 +33,6 @@ a {@include link-underline;}
 
 .pronunciation-container {
   padding: 16px;
-  background: $almost-transparent-gray;
   li {position: relative;}
   p {margin-bottom: 0;}
 }
@@ -40,11 +41,11 @@ a {@include link-underline;}
   display: inline-block;
   font-size: 24px;
   line-height: 28px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .audio-container {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   .vowel-in-word {
     display: inline-block;
     width: 16px;
@@ -63,11 +64,11 @@ a {@include link-underline;}
   width: 16px;
 }
 
-.definition {margin-left: 32px;}
+.definition {margin-left: 16px;}
 
 .search {
   position: relative;
-  margin-bottom: 48px;
+  margin-bottom: 16px;
     button {
       position: absolute;
       right: 0;
@@ -75,6 +76,7 @@ a {@include link-underline;}
       height: 40px;
       width: 80px;
       font-size: 16px;
+      cursor: pointer;
       background: $black;
       border: 1px solid $black;
       border-left: 0;
@@ -99,8 +101,6 @@ a {@include link-underline;}
         color:$gray;
       }
     }
-}
-.about {
 }
 
 @media (max-width: $app-width) {
