@@ -2,7 +2,7 @@ import { AboutApp } from './AboutApp'
 import { AboutMe } from './AboutMe'
 
 export const About = ({ about }) => (
-  <div className="about">
+  <div className="about set">
     <h3>The App</h3>
     <AboutApp
       {...about}

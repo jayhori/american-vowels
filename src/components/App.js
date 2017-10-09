@@ -5,6 +5,8 @@ import LookUpWord from './LookUpWord'
 export default class extends Component {
   constructor(props) {
     super(props)
+    this.setLoadingStateToTruthy = this.setLoadingStateToTruthy.bind(this)
+    this.setLoadingStateToFalsy = this.setLoadingStateToFalsy.bind(this)
     this.showAbout = this.showAbout.bind(this)
     this.hideAbout = this.hideAbout.bind(this)
     this.state = {
@@ -15,10 +17,17 @@ export default class extends Component {
         skills: ['JavaScript', 'React', 'TypeScript', 'Angular'],
         city: 'Tokyo',
       },
-      aboutIsVisible: true,
+      aboutIsVisible: false,
+      loading: false,
     }
   }
 
+  setLoadingStateToTruthy() {
+    this.setState({ loading: true })
+  }
+  setLoadingStateToFalsy() {
+    this.setState({ loading: false })
+  }
   showAbout() {
     this.setState({ aboutIsVisible: true })
   }
@@ -32,13 +41,15 @@ export default class extends Component {
         <header className="header">
           <h1>Vowels in a Word</h1>
           <div className="summary">
-            Learning English vowels is not rocket science. Look up
-            your favorite word and study accurate sounds of its vowels one by one.
+            Look up an English word and study accurate sounds of its vowels one by one.
           </div>
         </header>
         <div>
           <LookUpWord
             showAboutStatus={this.state.showAbout}
+            loading={this.state.loading}
+            setLoadingStateToTruthy={() => this.setLoadingStateToTruthy()}
+            setLoadingStateToFalsy={() => this.setLoadingStateToFalsy()}
             showAbout={() => this.showAbout()}
             hideAbout={() => this.hideAbout()}
           />
@@ -50,22 +61,25 @@ export default class extends Component {
                 onClick={() => this.hideAbout()}
                 role="button"
                 tabIndex="0"
+                className="button"
               >
-                Hide about
+                Hide About
               </a>
               {this.state.aboutIsVisible ?
                 <About about={this.state.about} />
                 : null}
             </div> :
-            <div>
-              <a
-                onClick={() => this.showAbout()}
-                role="button"
-                tabIndex="0"
-              >
-                Show about
-              </a>
-            </div>
+            !this.state.loading ?
+              <div>
+                <a
+                  onClick={() => this.showAbout()}
+                  role="button"
+                  tabIndex="0"
+                  className="button"
+                >
+                  Show About
+                </a>
+              </div> : null
         }
       </div>
     )
