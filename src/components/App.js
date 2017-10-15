@@ -11,11 +11,15 @@ export default class extends Component {
     this.hideAbout = this.hideAbout.bind(this)
     this.state = {
       about: {
-        firstName: 'Jay',
-        lastName: 'Hori',
-        profession: 'computer programmer',
-        skills: ['JavaScript', 'React', 'TypeScript', 'Angular'],
-        city: 'Tokyo',
+        name: 'American Vowels',
+        description: 'Look up an English word and study accurate sounds of its General American vowels one by one.',
+        developer: {
+          firstName: 'Jay',
+          lastName: 'Hori',
+          profession: 'computer programmer',
+          skills: ['JavaScript', 'React', 'TypeScript', 'Angular'],
+          city: 'Tokyo',
+        },
       },
       aboutIsVisible: false,
       loading: false,
@@ -39,9 +43,9 @@ export default class extends Component {
     return (
       <div className="app">
         <header className="header">
-          <h1>Vowels in a Word</h1>
+          <h1>American Vowels</h1>
           <div className="summary">
-            Look up an English word and study accurate sounds of its vowels one by one.
+            {this.state.about.description}
           </div>
         </header>
         <div>
@@ -63,7 +67,7 @@ export default class extends Component {
                 tabIndex="0"
                 className="button"
               >
-                Hide About
+                Show Less
               </a>
               {this.state.aboutIsVisible ?
                 <About about={this.state.about} />
@@ -77,7 +81,7 @@ export default class extends Component {
                   tabIndex="0"
                   className="button"
                 >
-                  Show About
+                  About
                 </a>
               </div> : null
         }
