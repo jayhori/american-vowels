@@ -99,7 +99,7 @@ export default class extends Component {
                     </span>&#58;
                   </h3>
                   <span className="pronunciation">{word.pronunciation.all}</span>
-                  <h3>Indivisual Vowels of <span className="uppercase">{word.word}</span>&#58;</h3>
+                  <h3>Individual Vowels of <span className="uppercase">{word.word}</span>&#58;</h3>
                   <div className="audio-container">
                     {vowelsInWord ?
                       vowelsInWord.map(
