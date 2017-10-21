@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
     entry: ['babel-polyfill', './src/index.js'],
@@ -35,6 +36,13 @@ module.exports = {
         ]
     },
     plugins:[
-        new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify('production')})
+        new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify('production')}),
+        new UglifyJSPlugin({
+          
+        }),
+        new webpack.LoaderOptionsPlugin({
+          minimize: true,
+          debug: false
+        })
     ]
 }
