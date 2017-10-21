@@ -1,15 +1,15 @@
-# English Pronunciation Dictionary
+# American Vowels
 
-This English dictionary, a React app, uses the [International Phonetic Alphabet](https://en.wikipedia.org/wiki/International_Phonetic_Alphabet), which is notorious for its use of the principle of accurate one-to-one correspondence between sounds and symbols although the learning curve of the symbols is steep.
+This React app describes General American vowels in an English word in the International Phonetic Alphabet. The IPA is notorious for its use of the principle of accurate one-to-one correspondence between sounds and symbols.
 
 ## Getting Started
 The instructions help you set up the project on your local machine.
 
 ### Installing dependencies
 
-- Run `npm install` to. NPM will create a directory called node_modules, look into package.json and dependencies described in it, install them, and put them in the directory.
+- Run `npm install`
 
-### Implementing Words API
+### Registering for and implementing Words API
 The app uses a third party RESTful api that returns the descriptions of a word.
 
 - Register for [Words API](https://www.wordsapi.com/)
