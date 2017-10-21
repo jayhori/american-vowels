@@ -2,7 +2,7 @@ import { Component } from 'react'
 import GoSearch from 'react-icons/lib/go/search'
 import credentials from '../credentials'
 import Audio from './Audio'
-import generalAmericanVowels from '../generalAmericanVowels'
+import generalAmericanVowels from '../assets/generalAmericanVowels'
 
 export default class extends Component {
   constructor(props) {
@@ -81,9 +81,10 @@ export default class extends Component {
               type="text"
               ref={(input) => { this.textInput = input }}
               placeholder="search"
+              aria-label="text_input"
               required
             />
-            <button><GoSearch /></button>
+            <button aria-label="go_search_button"><GoSearch /></button>
           </div >
         </form>
         {loading ? <div><span className="loading">Loading...</span></div> :
