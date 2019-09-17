@@ -1,20 +1,28 @@
-html, body, div {
+html,
+body,
+div {
   font-family: $text-font;
   font-size: 16px;
   line-height: 24px;
 }
 
-* {box-sizing: border-box;}
-html {background: $background-color;}
+* {
+  box-sizing: border-box;
+}
+html {
+  background: $background-color;
+}
 .app {
   width: $app-width;
-  margin: 24px auto 32px auto
+  margin: 24px auto 32px auto;
 }
 
 .set {
   margin-bottom: 16px;
 }
-.uppercase {text-transform: uppercase;}
+.uppercase {
+  text-transform: uppercase;
+}
 
 p {
   font-family: $text-font;

@@ -20,17 +20,14 @@ export default class extends Component {
     this.setState({ submitted: true })
     this.props.hideAbout()
     e.preventDefault()
-    await this.fetchWord(this.textInput.value)
-      .then(
-        (word) => {
-          this.setState({ word })
-          this.props.setLoadingStateToFalsy()
-        },
-      )
+    await this.fetchWord(this.textInput.value).then(word => {
+      this.setState({ word })
+      this.props.setLoadingStateToFalsy()
+    })
     this.setState({
       vowelsInWord: this.findVowels(
         this.state.word.pronunciation.all,
-        generalAmericanVowels,
+        generalAmericanVowels
       ),
     })
   }
@@ -39,13 +36,16 @@ export default class extends Component {
     const headers = new Headers()
     headers.append('X-Mashape-Key', credentials.mashapeKey)
     headers.append('Accept', 'application/json')
-    const request = new Request(`https://wordsapiv1.p.mashape.com/words/${word.toLowerCase()}`, { headers })
+    const request = new Request(
+      `https://wordsapiv1.p.mashape.com/words/${word.toLowerCase()}`,
+      { headers }
+    )
     const data = await fetch(request)
       .then(response =>
-        (!response.ok ? (
-          this.setState({ errorMessage: response.statusText }),
-          this.props.setLoadingStateToFalsy()
-        ) : response),
+        !response.ok
+          ? (this.setState({ errorMessage: response.statusText }),
+            this.props.setLoadingStateToFalsy())
+          : response
       )
       .then(response => response.json())
       .then(json => json)
@@ -54,10 +54,10 @@ export default class extends Component {
 
   findVowels(pronunciation, vowels) {
     this.vowelsInWord = []
-    const checkEachCharacter = (n) => {
+    const checkEachCharacter = n => {
       if (pronunciation.charAt(n)) {
         const filteredObject = vowels.filter(
-          vowel => vowel.name === pronunciation.charAt(n),
+          vowel => vowel.name === pronunciation.charAt(n)
         )
         if (filteredObject.length > 0) {
           this.vowelsInWord.push(filteredObject[0])
@@ -79,53 +79,61 @@ export default class extends Component {
             <input
               id="word"
               type="text"
-              ref={(input) => { this.textInput = input }}
+              ref={input => {
+                this.textInput = input
+              }}
               placeholder="search"
               aria-label="text_input"
               required
             />
-            <button aria-label="go_search_button"><GoSearch /></button>
-          </div >
+            <button aria-label="go_search_button">
+              <GoSearch />
+            </button>
+          </div>
         </form>
-        {loading ? <div><span className="loading">Loading...</span></div> :
-          errorMessage ? <span>{errorMessage}</span> :
-            submitted ?
-              <div className="set looked-up-word-card">
-                <div className="looked-up-title">
-                  {word.word}
-                </div>
-                <div className="pronunciation-container">
-                  <h3>The International Phonetic Alphabet of
-                    <span className="uppercase"> {word.word}
-                    </span>&#58;
-                  </h3>
-                  <span className="pronunciation">{word.pronunciation.all}</span>
-                  <h3>Individual Vowels of <span className="uppercase">{word.word}</span>&#58;</h3>
-                  <div className="audio-container">
-                    {vowelsInWord ?
-                      vowelsInWord.map(
-                        vowelInWord => (
-                          <Audio
-                            vowelInWord={vowelInWord}
-                          />),
-                      ) : null
-                    }
-                  </div>
-                  <h3>Definitions of <span className="uppercase">{word.word}&#58;</span></h3>
-                  <ul>{word.results.map(
-                    (data, key) => (
-                      (key < 3) ?
-                        <li>
-                          <span className="key">{key + 1}</span>
-                          <div className="definition">{data.definition}</div>
-                        </li>
-                        : null),
-                  )}
-                  </ul>
-                </div>
+        {loading ? (
+          <div>
+            <span className="loading">Loading...</span>
+          </div>
+        ) : errorMessage ? (
+          <span>{errorMessage}</span>
+        ) : submitted ? (
+          <div className="set looked-up-word-card">
+            <div className="looked-up-title">{word.word}</div>
+            <div className="pronunciation-container">
+              <h3>
+                The International Phonetic Alphabet of
+                <span className="uppercase"> {word.word}</span>&#58;
+              </h3>
+              <span className="pronunciation">{word.pronunciation.all}</span>
+              <h3>
+                Individual Vowels of{' '}
+                <span className="uppercase">{word.word}</span>&#58;
+              </h3>
+              <div className="audio-container">
+                {vowelsInWord
+                  ? vowelsInWord.map(vowelInWord => (
+                      <Audio vowelInWord={vowelInWord} />
+                    ))
+                  : null}
               </div>
-              : null
-        }
+              <h3>
+                Definitions of{' '}
+                <span className="uppercase">{word.word}&#58;</span>
+              </h3>
+              <ul>
+                {word.results.map((data, key) =>
+                  key < 3 ? (
+                    <li>
+                      <span className="key">{key + 1}</span>
+                      <div className="definition">{data.definition}</div>
+                    </li>
+                  ) : null
+                )}
+              </ul>
+            </div>
+          </div>
+        ) : null}
       </div>
     )
   }

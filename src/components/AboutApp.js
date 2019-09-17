@@ -1,6 +1,7 @@
 export const AboutApp = () => (
   <span>
-    This web application lets you look up an English word so you can learn its&nbsp;
+    This web application lets you look up an English word so you can learn
+    its&nbsp;
     <a
       target="_blank"
       rel="noopener noreferrer"
@@ -16,8 +17,8 @@ export const AboutApp = () => (
     >
       International Phonetic Alphabet
     </a>
-    . The IPA is arguably the most accurate representation of
-    sounds that live in most natural languages.
+    . The IPA is arguably the most accurate representation of sounds that live
+    in most natural languages.
   </span>
 )
 
