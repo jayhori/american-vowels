@@ -5,7 +5,4 @@ import './stylesheets/style.scss'
 
 window.React = React
 
-render(
-  <App />,
-  document.getElementById('react-container'),
-)
+render(<App />, document.getElementById('react-container'))

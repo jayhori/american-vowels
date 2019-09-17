@@ -12,7 +12,8 @@ export default class extends Component {
     this.state = {
       about: {
         name: 'American Vowels',
-        description: 'Look up an English word and study accurate sounds of its General American vowels one by one.',
+        description:
+          'Look up an English word and study accurate sounds of its General American vowels one by one.',
         developer: {
           firstName: 'Jay',
           lastName: 'Hori',
@@ -44,9 +45,7 @@ export default class extends Component {
       <div className="app">
         <header className="header">
           <h1>American Vowels</h1>
-          <div className="summary">
-            {this.state.about.description}
-          </div>
+          <div className="summary">{this.state.about.description}</div>
         </header>
         <div>
           <LookUpWord
@@ -58,35 +57,33 @@ export default class extends Component {
             hideAbout={() => this.hideAbout()}
           />
         </div>
-        {
-          this.state.aboutIsVisible ?
-            <div>
-              <a
-                onClick={() => this.hideAbout()}
-                role="button"
-                tabIndex="0"
-                className="button"
-              >
-                Show Less
-              </a>
-              {this.state.aboutIsVisible ?
-                <About about={this.state.about} />
-                : null}
-            </div> :
-            !this.state.loading ?
-              <div>
-                <a
-                  onClick={() => this.showAbout()}
-                  role="button"
-                  tabIndex="0"
-                  className="button"
-                >
-                  About
-                </a>
-              </div> : null
-        }
+        {this.state.aboutIsVisible ? (
+          <div>
+            <a
+              onClick={() => this.hideAbout()}
+              role="button"
+              tabIndex="0"
+              className="button"
+            >
+              Show Less
+            </a>
+            {this.state.aboutIsVisible ? (
+              <About about={this.state.about} />
+            ) : null}
+          </div>
+        ) : !this.state.loading ? (
+          <div>
+            <a
+              onClick={() => this.showAbout()}
+              role="button"
+              tabIndex="0"
+              className="button"
+            >
+              About
+            </a>
+          </div>
+        ) : null}
       </div>
     )
   }
 }
-

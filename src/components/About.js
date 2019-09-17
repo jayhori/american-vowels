@@ -5,13 +5,10 @@ export const About = ({ about }) => (
   <div className="about set">
     <h3>About</h3>
     <p>
-      <AboutApp
-        {...about}
-      />&nbsp;
+      <AboutApp {...about} />
+      &nbsp;
       {about.name} is designed and developed by&nbsp;
-      <AboutMe
-        {...about.developer}
-      />
+      <AboutMe {...about.developer} />
     </p>
   </div>
 )
