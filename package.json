@@ -42,9 +42,9 @@
     "write-file-webpack-plugin": "^4.0.0"
   },
   "dependencies": {
-    "react": "^15.5.0",
+    "react": "16.8.0",
     "react-audio-player": "^0.6.0",
-    "react-dom": "^15.4.2",
+    "react-dom": "16.8.0",
     "react-icons": "^2.2.3"
   }
 }
