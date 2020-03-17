@@ -18,7 +18,6 @@ export default class extends Component {
   async submit(e) {
     this.props.setLoadingStateToTruthy()
     this.setState({ submitted: true })
-    this.props.hideAbout()
     e.preventDefault()
     await this.fetchWord(this.textInput.value).then(word => {
       this.setState({ word })
@@ -70,7 +69,7 @@ export default class extends Component {
   }
 
   render() {
-    const { loading } = this.props
+    const { isLoading } = this.props
     const { word, submitted, errorMessage, vowelsInWord } = this.state
     return (
       <div>
@@ -91,7 +90,7 @@ export default class extends Component {
             </button>
           </div>
         </form>
-        {loading ? (
+        {isLoading ? (
           <div>
             <span className="loading">Loading...</span>
           </div>
@@ -106,8 +105,7 @@ export default class extends Component {
             </h3>
             <span className="pronunciation">{word.pronunciation.all}</span>
             <h3>
-              Individual Vowels of{' '}
-              <span className="uppercase">{word.word}</span>&#58;
+              Vowels of <span className="uppercase">{word.word}</span>&#58;
             </h3>
             <div className="audio-container">
               {vowelsInWord
