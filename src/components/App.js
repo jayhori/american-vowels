@@ -27,7 +27,7 @@ const App = () => {
     <div className="app">
       <header className="header">
         <h1>American Vowels</h1>
-        <div className="summary">{about.description}</div>
+        <div>{about.description}</div>
       </header>
       <div>
         <LookUpWord

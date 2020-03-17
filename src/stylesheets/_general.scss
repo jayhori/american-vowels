@@ -2,8 +2,8 @@ html,
 body,
 div {
   font-family: $text-font;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
 }
 
 * {
@@ -14,7 +14,10 @@ html {
 }
 .app {
   width: $app-width;
-  margin: 24px auto 32px auto;
+  margin: 0 auto;
+  padding: 0 12px;
+  border-left: 1px solid pink;
+  height: 100vh;
 }
 
 .set {
@@ -26,31 +29,11 @@ html {
 
 p {
   font-family: $text-font;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 8px;
 }
 
-h1 {
-  font-family: $display-font;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 30px;
-  margin-bottom: 8px;
-}
-
-h2 {
-  font-family: $display-font;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 30px;
-  margin-bottom: 8px;
-}
-
+h1,
+h2,
 h3 {
   font-family: $display-font;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 26px;
-  margin-bottom: 8px;
+  font-weight: bold;
 }

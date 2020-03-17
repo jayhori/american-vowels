@@ -98,40 +98,37 @@ export default class extends Component {
         ) : errorMessage ? (
           <span>{errorMessage}</span>
         ) : submitted ? (
-          <div className="set looked-up-word-card">
-            <div className="looked-up-title">{word.word}</div>
-            <div className="pronunciation-container">
-              <h3>
-                The International Phonetic Alphabet of
-                <span className="uppercase"> {word.word}</span>&#58;
-              </h3>
-              <span className="pronunciation">{word.pronunciation.all}</span>
-              <h3>
-                Individual Vowels of{' '}
-                <span className="uppercase">{word.word}</span>&#58;
-              </h3>
-              <div className="audio-container">
-                {vowelsInWord
-                  ? vowelsInWord.map(vowelInWord => (
-                      <Audio vowelInWord={vowelInWord} />
-                    ))
-                  : null}
-              </div>
-              <h3>
-                Definitions of{' '}
-                <span className="uppercase">{word.word}&#58;</span>
-              </h3>
-              <ul>
-                {word.results.map((data, key) =>
-                  key < 3 ? (
-                    <li>
-                      <span className="key">{key + 1}</span>
-                      <div className="definition">{data.definition}</div>
-                    </li>
-                  ) : null
-                )}
-              </ul>
+          <div className="set">
+            <div>{word.word}</div>
+            <h3>
+              The International Phonetic Alphabet of
+              <span className="uppercase"> {word.word}</span>&#58;
+            </h3>
+            <span className="pronunciation">{word.pronunciation.all}</span>
+            <h3>
+              Individual Vowels of{' '}
+              <span className="uppercase">{word.word}</span>&#58;
+            </h3>
+            <div className="audio-container">
+              {vowelsInWord
+                ? vowelsInWord.map(vowelInWord => (
+                    <Audio vowelInWord={vowelInWord} />
+                  ))
+                : null}
             </div>
+            <h3>
+              Definitions of <span className="uppercase">{word.word}&#58;</span>
+            </h3>
+            <ul>
+              {word.results.map((data, key) =>
+                key < 3 ? (
+                  <li className="key-container">
+                    <span className="key">{key + 1}.</span>
+                    <div className="definition">{data.definition}</div>
+                  </li>
+                ) : null
+              )}
+            </ul>
           </div>
         ) : null}
       </div>
