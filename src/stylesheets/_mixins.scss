@@ -13,24 +13,26 @@
 }
 
 @mixin button {
+  margin-bottom: 24px;
+  height: 24px;
   font-family: $display-font;
   display: inline-block;
-  font-size: 14px;
-  line-height: 14px;
-  width: 100px;
+  font-size: 16px;
+  line-height: 24px;
+  width: 96px;
   background: transparent;
   cursor: pointer;
-  transition-duration: 0.5s;
-  padding: 4px;
-  margin-bottom: 8px;
+  transition-duration: 0.1s;
+  padding: 0 4px;
   text-decoration: none;
   text-align: center;
-  color: $black;
-  border: 2px solid $black;
+  color: $gray;
+  background-color: $almost-transparent-gray;
+  border: 0px;
+  border-radius: 12px;
   &:hover {
-    padding: 4px;
-    transition-duration: 0.5s;
-    background-color: $black;
-    color: $white;
+    padding: 0 4px;
+    transition-duration: 0.1s;
+    background-color: rgba(0, 0, 0, 0.15);
   }
 }

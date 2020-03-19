@@ -1,34 +1,66 @@
+html,
+body,
+div {
+  font-family: $text-font;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  background: $background-color;
+}
+
+h1,
+h2,
+h3 {
+  font-family: $display-font;
+  font-weight: bold;
+}
+
+h1 {
+  line-height: 48px;
+}
+
+.app {
+  width: $app-width;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
 a {
   @include link-underline;
 }
+
 .button {
   @include button;
-}
-
-.loading {
-  color: $black;
 }
 
 .section {
   margin-bottom: 24px;
 }
 
+.the-word {
+  font-weight: bold;
+  font-family: $display-font;
+}
+
 .pronunciation {
   display: inline-block;
-  font-size: 24px;
-  line-height: 28px;
-  margin-bottom: 16px;
+  font-family: $display-font;
 }
 
 .audio-container {
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   .vowel-in-word {
     display: inline-block;
-    width: 16px;
+    margin-right: 2px;
   }
   .audio-icon {
     display: inline-block;
-    width: 24px;
+    margin-right: 12px;
     cursor: pointer;
   }
 }
@@ -51,34 +83,25 @@ a {
 
 .search {
   position: relative;
-  margin-bottom: 16px;
-  button {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 40px;
-    width: 80px;
-    font-size: 16px;
-    cursor: pointer;
-    background: $black;
-    border: 1px solid $black;
-    border-left: 0;
-    color: $white;
-  }
+  margin-bottom: 24px;
   input {
+    margin-bottom: 24px;
     display: inline-block;
-    height: 40px;
-    width: calc(100% - 80px);
-    padding: 0 8px;
+    height: 48px;
+    width: 100%;
+    padding: 0 24px;
     background: transparent;
-    line-height: 40px;
-    font-size: 16px;
+    line-height: 48px;
+    font-size: $base-font-size;
     font-family: $text-font;
     cursor: pointer;
     text-decoration: none;
     text-align: left;
     color: $black;
-    border: 1px solid $black;
+    border: 0;
+    box-shadow: 1px 1px 6px #ccc;
+    border-radius: 24px;
+
     &::placeholder {
       font-size: 16px;
       color: $gray;

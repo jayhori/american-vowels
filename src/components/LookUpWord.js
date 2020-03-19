@@ -1,5 +1,4 @@
 import { Component } from 'react'
-import GoSearch from 'react-icons/lib/go/search'
 import credentials from '../credentials'
 import Audio from './Audio'
 import generalAmericanVowels from '../assets/generalAmericanVowels'
@@ -81,12 +80,12 @@ export default class extends Component {
               ref={input => {
                 this.textInput = input
               }}
-              placeholder="search"
+              placeholder="e.g. basketball"
               aria-label="text_input"
               required
             />
-            <button aria-label="go_search_button">
-              <GoSearch />
+            <button aria-label="go_search_button" className="button">
+              Search
             </button>
           </div>
         </form>
@@ -97,16 +96,9 @@ export default class extends Component {
         ) : errorMessage ? (
           <span>{errorMessage}</span>
         ) : submitted ? (
-          <div className="set">
-            <div>{word.word}</div>
-            <h3>
-              The International Phonetic Alphabet of
-              <span className="uppercase"> {word.word}</span>&#58;
-            </h3>
+          <div>
+            <div className="the-word">{word.word}</div>
             <span className="pronunciation">{word.pronunciation.all}</span>
-            <h3>
-              Vowels of <span className="uppercase">{word.word}</span>&#58;
-            </h3>
             <div className="audio-container">
               {vowelsInWord
                 ? vowelsInWord.map(vowelInWord => (
@@ -114,18 +106,10 @@ export default class extends Component {
                   ))
                 : null}
             </div>
-            <h3>
-              Definitions of <span className="uppercase">{word.word}&#58;</span>
-            </h3>
+            <div>Definitions:</div>
             <ul>
-              {word.results.map((data, key) =>
-                key < 3 ? (
-                  <li className="key-container">
-                    <span className="key">{key + 1}.</span>
-                    <div className="definition">{data.definition}</div>
-                  </li>
-                ) : null
-              )}
+              {word.results.map((data, key) => ( <li className="key-container"> <span className="key">{key + 1}.</span> <div className="definition">{data.definition}</div> </li>
+              ))}
             </ul>
           </div>
         ) : null}

@@ -6,31 +6,30 @@ export default class extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      playing: false,
+      isPlaying: false,
     }
   }
 
   render() {
-    const { playing } = this.state
+    const { isPlaying } = this.state
     return (
-      <div>
+      <span>
         <span className="vowel-in-word">{this.props.vowelInWord.name}</span>
         <span className="audio-icon">
-          <MdVolumeUp onClick={() => this.setState({ playing: true })} />
+          <MdVolumeUp onClick={() => this.setState({ isPlaying: true })} />
         </span>
-        {playing ? (
+        {isPlaying ? (
           <span>
-            Playing
             <ReactAudioPlayer
               src={this.props.vowelInWord.url}
               onEnded={() => {
-                this.setState({ playing: false })
+                this.setState({ isPlaying: false })
               }}
               autoPlay
             />
           </span>
         ) : null}
-      </div>
+      </span>
     )
   }
 }
